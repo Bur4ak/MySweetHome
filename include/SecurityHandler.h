@@ -1,29 +1,38 @@
 /**
- * @file SecurityHandler.h
- * @brief Abstract Handler interface for Chain of Responsibility
+ * @file SecuritySystem.h
+ * @brief Context class for Security System (Chain of Responsibility)
  * @version 5.0
  * @date 03/12/2025
  *
  * @authors
- * - 220201047: Security System - Chain of Responsibility (Interface)
+ * - 220201047: Security System - Chain of Responsibility Manager
  *
- * @patterns Chain of Responsibility
+ * @patterns Chain of Responsibility, Facade (Subsystem)
  */
 
-#ifndef SECURITYHANDLER_H
-#define SECURITYHANDLER_H
+#ifndef SECURITYSYSTEM_H
+#define SECURITYSYSTEM_H
 
-class SecurityHandler
+#include "Alarm.h"
+#include "Light.h"
+#include <vector>
+
+class SecuritySystem
 {
-protected:
-    SecurityHandler *next;
+private:
+    Alarm *alarm;
+    std::vector<Light *> *lights;
+
+    bool isActive;
 
 public:
-    SecurityHandler();
-    virtual ~SecurityHandler();
+    SecuritySystem(Alarm *alarm, std::vector<Light *> *lights);
+    ~SecuritySystem();
 
-    void setNext(SecurityHandler *nextHandler);
-    virtual void handleRequest();
+    void activate();
+    void deactivate();
+    void handleMotionDetection();
+    void displayStatus() const;
 };
 
-#endif // SECURITYHANDLER_H
+#endif // SECURITYSYSTEM_H
