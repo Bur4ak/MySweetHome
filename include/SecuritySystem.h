@@ -6,7 +6,7 @@
  *
  * @authors
  * - 220201047: Security System - Chain of Responsibility Manager
-
+ *
  * @patterns Chain of Responsibility, Facade (Subsystem)
  */
 
@@ -17,11 +17,22 @@
 #include "Light.h"
 #include <vector>
 
+// Forward declarations for handlers
+class SecurityHandler;
+class AlarmHandler;
+class LightHandler;
+class PoliceHandler;
+
 class SecuritySystem
 {
 private:
     Alarm *alarm;
     std::vector<Light *> *lights;
+
+    // Chain handlers
+    AlarmHandler *alarmHandler;
+    LightHandler *lightHandler;
+    PoliceHandler *policeHandler;
 
     bool isActive;
 
