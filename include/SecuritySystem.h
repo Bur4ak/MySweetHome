@@ -6,7 +6,6 @@
  *
  * @authors
  * - 220201047: Security System - Chain of Responsibility Manager
-
  * @patterns Chain of Responsibility, Facade (Subsystem)
  */
 
